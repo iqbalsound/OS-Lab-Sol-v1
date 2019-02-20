@@ -1,0 +1,30 @@
+ org        0x7c00               ; BIOS loads at this address
+
+ bits       16                 ; 16 bits real mode
+start:
+                cli                             ; disable interrupts
+
+                mov     si, msg0                ; SI points to message
+                mov     ah, 0x0e                ; print char service
+.loop0          lodsb                           ; AL <- [DS:SI] && SI++
+                or      al, al                  ; end of string?
+                jz      .loop1
+                int     0x10                    ; print char
+                jmp     .loop0                  ; next char
+
+
+                mov     si, msg1                 ; SI points to message
+                mov     ah, 0x0e                ; print char service
+.loop1          lodsb                           ; AL <- [DS:SI] && SI++
+                or      al, al                  ; end of string?
+                jz      halt
+                int     0x10                    ; print char
+                jmp     .loop1                  ; next char
+
+halt:           hlt                             ; halt
+
+msg0:  db    0ah, 0dh, "   - Lab 02 - OS -- Fall 2017 -    ", 0
+msg1:	 db	  0ah, 0dh, " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ",0ah, 0dh, "|             Please Power OFF Your PC..!!             |",0ah, 0dh,  " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ",0ah, 0dh, 0	
+
+ times 510 - ($-$$) db 0
+ dw        0xaa55			

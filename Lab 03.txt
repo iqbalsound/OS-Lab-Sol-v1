@@ -1,0 +1,57 @@
+echo off
+cls
+md Batch
+cd Batch
+cls
+echo "Batch Folder Created ...!!"
+echo "It is now Your working Directory..!!"
+
+
+clear
+mkdir shell-Dic
+cd shell-Dic
+cls
+echo "Directory Created …...!!!"
+echo $PWD is complete path of shell-Dic directory!
+
+
+@echo off
+if exist C:\users\iqbal Uddin khan\desktop\test. (
+echo Found
+) else (
+echo Not found
+)
+Pause
+
+
+
+# ------ Simple Arithmetic Calculator --------
+#echo 'enter the value for a'
+#read a
+#echo 'enter the value for b'
+#read b
+#echo 'enter operator'
+#read op
+#echo "-----"
+#case $op in
+#	+) expr  $a + $b;;
+#	-) expr $a - $b;;
+#	\*) expr $a \* $b;;
+#	/) expr $a / $b ;;
+#esac
+#echo "-----"
+# ---------------------------------------------
+# ------------- Table Generator ---------------
+echo "enter the number"
+read n
+clear
+echo "-------------"
+echo " Table of $n "
+echo "-------------"
+for i in 1 2 3 4 5 6 7 8 9 10 11 12
+do
+x=`expr  $n \* $i`
+#x=`expr  $n \* $i`
+echo "$n x $i = $x "
+done
+echo "-------------"
